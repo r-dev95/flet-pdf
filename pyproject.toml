@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "flet-pdf"
+version = "0.1.0"
+description = ""
+authors = ["r-dev95 <r-dev95@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flet = "^0.25.1"
+pandas = "^2.2.3"
+tomlkit = "^0.13.2"
+pypdf = "^5.1.0"
+
+
+[tool.poetry.group.test.dependencies]
+mypy = "^1.13.0"
+ruff = "^0.8.2"
+pytest = "^8.3.4"
+pytest-mock = "^3.14.0"
+types-pyyaml = "^6.0.12.20240917"
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

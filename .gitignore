@@ -1,0 +1,12 @@
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+cspell.json
+
+__pycache__/
+*/log/*.txt*
+*/result/
+*/param/*.yaml
+note.md
+tests/
