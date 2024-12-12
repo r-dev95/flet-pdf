@@ -6,11 +6,12 @@ authors = ["r-dev95 <r-dev95@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.14"
 flet = "^0.25.1"
 pandas = "^2.2.3"
 tomlkit = "^0.13.2"
 pypdf = "^5.1.0"
+pyinstaller = "^6.11.1"
 
 
 [tool.poetry.group.test.dependencies]
