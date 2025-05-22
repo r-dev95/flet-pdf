@@ -325,7 +325,7 @@ class DelButtonText(ft.Draggable):
         self.parent_control.controls.remove(self)
         self.parent_control.update()
 
-    def on_accept(self, e: ft.DragTargetAcceptEvent) -> None:
+    def on_accept(self, e: ft.DragTargetEvent) -> None:
         """Reorder instances of this class in the parent control using drag and drop.
 
         Args:

@@ -1,12 +1,18 @@
-.mypy_cache/
-.pytest_cache/
-.ruff_cache/
+.venv
 .vscode/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
 cspell.json
 
 __pycache__/
-*/log/*.txt*
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
 */result/
-*/param/*.yaml
-note.md
-tests/
+*/log/*.txt*
+storage/
+
