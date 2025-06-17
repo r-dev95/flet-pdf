@@ -1,10 +1,11 @@
+# development environment files
 .venv
 .vscode/
 .mypy_cache/
 .ruff_cache/
 .pytest_cache/
-cspell.json
 
+# python generated files
 __pycache__/
 *.py[oc]
 build/
@@ -12,7 +13,11 @@ dist/
 wheels/
 *.egg-info
 
-*/result/
-*/log/*.txt*
+# environment files
+.env
+
+# results, logs, and other files
+result/
+log/
 storage/
 
