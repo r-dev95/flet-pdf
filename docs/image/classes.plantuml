@@ -1,0 +1,384 @@
+@startuml classes
+!define MAIN_CLASS_COLOR #a8c9ea
+
+set namespaceSeparator none
+class "app.App" as app.App MAIN_CLASS_COLOR {
+  c_disp_fpath
+  c_disp_log
+  file_picker : FilePicker
+  on_click_func : dict
+  page : Page
+  tf_extract_num
+  disp_log(msgs: list[str], log_type: LogType) -> None
+  get_fpaths() -> list[str]
+  on_click_assign(e: ft.FilePickerResultEvent | ft.ControlEvent) -> None
+  on_delete_file(e: ft.ControlEvent) -> None
+  on_disp_fpath(e: ft.FilePickerResultEvent) -> None
+  on_merge_file(e: ft.ControlEvent) -> None
+  on_select_file(e: ft.ControlEvent) -> None
+  on_split_or_extract_file(e: ft.ControlEvent) -> None
+}
+class "flet.core.adaptive_control.AdaptiveControl" as flet.core.adaptive_control.AdaptiveControl {
+  adaptive
+}
+class "flet.core.app_bar.AppBar" as flet.core.app_bar.AppBar {
+  actions
+  automatically_imply_leading
+  bgcolor
+  center_title
+  clip_behavior
+  color
+  elevation
+  elevation_on_scroll
+  exclude_header_semantics
+  force_material_transparency
+  is_secondary
+  leading
+  leading_width
+  shadow_color
+  shape
+  surface_tint_color
+  title
+  title_spacing
+  title_text_style
+  toolbar_height
+  toolbar_opacity
+  toolbar_text_style
+  before_update()
+}
+class "flet.core.column.Column" as flet.core.column.Column {
+  alignment
+  controls
+  horizontal_alignment
+  run_alignment
+  run_spacing
+  spacing
+  tight
+  wrap
+  clean()
+}
+class "flet.core.constrained_control.ConstrainedControl" as flet.core.constrained_control.ConstrainedControl {
+  animate_offset
+  animate_opacity
+  animate_position
+  animate_rotation
+  animate_scale
+  animate_size
+  aspect_ratio
+  bottom
+  height
+  key
+  left
+  offset
+  on_animation_end
+  right
+  rotate
+  scale
+  top
+  width
+  before_update()
+}
+class "flet.core.container.Container" as flet.core.container.Container {
+  alignment
+  animate
+  bgcolor
+  blend_mode
+  blur
+  border
+  border_radius
+  clip_behavior
+  color_filter
+  content
+  dark_theme
+  foreground_decoration
+  gradient
+  ignore_interactions
+  image
+  ink
+  ink_color
+  margin
+  on_click
+  on_hover
+  on_long_press
+  on_tap_down
+  padding
+  shadow
+  shape
+  theme
+  theme_mode
+  url
+  url_target
+  before_update()
+}
+class "flet.core.control.Control" as flet.core.control.Control {
+  badge : Optional[BadgeValue]
+  col
+  data
+  disabled
+  event_handlers
+  expand
+  expand_loose
+  opacity
+  page
+  parent : Optional[Control]
+  rtl
+  tooltip : Optional[TooltipValue]
+  uid
+  visible
+  {abstract}before_update()
+  {abstract}build()
+  build_update_commands(index, commands, added_controls, removed_controls, isolated: bool) -> None
+  clean() -> None
+  copy_attrs(dest: Dict[str, Any]) -> None
+  {abstract}did_mount()
+  invoke_method(method_name: str, arguments: Optional[Dict[str, str]], wait_for_result: bool, wait_timeout: Optional[float]) -> Optional[str]
+  invoke_method_async(method_name: str, arguments: Optional[Dict[str, str]], wait_for_result: bool, wait_timeout: Optional[float])
+  is_isolated() -> bool
+  update() -> None
+  {abstract}will_unmount()
+}
+class "flet.core.draggable.Draggable" as flet.core.draggable.Draggable {
+  affinity
+  axis
+  content
+  content_feedback
+  content_when_dragging
+  group
+  max_simultaneous_drags
+  on_drag_complete
+  on_drag_start
+  before_update()
+}
+class "flet.core.elevated_button.ElevatedButton" as flet.core.elevated_button.ElevatedButton {
+  autofocus
+  bgcolor
+  clip_behavior
+  color
+  content
+  elevation
+  icon
+  icon_color
+  on_blur
+  on_click
+  on_focus
+  on_hover
+  on_long_press
+  style
+  text
+  url
+  url_target
+  before_update()
+  focus()
+}
+class "flet.core.form_field_control.FormFieldControl" as flet.core.form_field_control.FormFieldControl {
+  align_label_with_hint
+  bgcolor
+  border
+  border_color
+  border_radius
+  border_width
+  collapsed
+  color
+  content_padding
+  counter
+  counter_style
+  counter_text
+  dense
+  error
+  error_max_lines
+  error_style
+  error_text
+  fill_color
+  filled
+  fit_parent_size
+  focus_color
+  focused_bgcolor
+  focused_border_color
+  focused_border_width
+  focused_color
+  helper
+  helper_max_lines
+  helper_style
+  helper_text
+  hint_fade_duration
+  hint_max_lines
+  hint_style
+  hint_text
+  hover_color
+  icon
+  label
+  label_style
+  prefix
+  prefix_icon
+  prefix_icon_size_constraints
+  prefix_style
+  prefix_text
+  size_constraints
+  suffix
+  suffix_icon
+  suffix_icon_size_constraints
+  suffix_style
+  suffix_text
+  text_size
+  text_style
+  text_vertical_align
+  before_update()
+}
+class "flet.core.scrollable_control.ScrollableControl" as flet.core.scrollable_control.ScrollableControl {
+  auto_scroll
+  on_scroll
+  on_scroll_interval
+  reverse
+  scroll
+  scroll_to(offset: Optional[float], delta: Optional[float], key: Optional[str], duration: Optional[int], curve: Optional[AnimationCurve])
+}
+class "flet.core.textfield.TextField" as flet.core.textfield.TextField {
+  always_call_on_tap
+  animate_cursor_opacity
+  autocorrect
+  autofill_hints
+  autofocus
+  can_request_focus
+  can_reveal_password
+  capitalization
+  clip_behavior
+  cursor_color
+  cursor_error_color
+  cursor_height
+  cursor_radius
+  cursor_width
+  enable_ime_personalized_learning
+  enable_interactive_selection
+  enable_scribble
+  enable_suggestions
+  filled : bool
+  ignore_pointers
+  input_filter
+  keyboard_brightness
+  keyboard_type
+  max_length
+  max_lines
+  min_lines
+  mouse_cursor
+  multiline
+  obscuring_character
+  on_blur
+  on_change
+  on_click
+  on_focus
+  on_submit
+  on_tap_outside
+  password
+  read_only
+  scroll_padding
+  selection_color
+  shift_enter
+  show_cursor
+  smart_dashes_type
+  smart_quotes_type
+  strut_style
+  text_align
+  text_style : Optional[TextStyle]
+  value
+  before_update()
+  blur()
+  focus()
+}
+class "lib.components.layout.DelButtonText" as lib.components.layout.DelButtonText MAIN_CLASS_COLOR {
+  page : Page
+  parent_control
+  on_accept(e: ft.DragTargetEvent) -> None
+  on_delete(e: ft.ControlEvent) -> None
+}
+class "lib.components.layout.DeleteElButton" as lib.components.layout.DeleteElButton MAIN_CLASS_COLOR {
+  icon : DELETE
+  text : DELETE
+}
+class "lib.components.layout.DispContainer" as lib.components.layout.DispContainer MAIN_CLASS_COLOR {
+  bgcolor : WHITE
+  border : Border
+  border_radius : int
+  content : ListView
+  expand : bool
+  height : int
+  padding : int
+}
+class "lib.components.layout.ExtractElButton" as lib.components.layout.ExtractElButton MAIN_CLASS_COLOR {
+  icon : EXTRACT
+  text : EXTRACT
+}
+class "lib.components.layout.ExtractPageTextField" as lib.components.layout.ExtractPageTextField MAIN_CLASS_COLOR {
+  bgcolor : RED, WHITE
+  col : dict
+  hint_text : str
+  label : str
+  num_pages : list[int]
+  on_blur
+  valid : bool
+  on_check_extract_num(e: ft.ControlEvent) -> None
+}
+class "lib.components.layout.MainLayout" as lib.components.layout.MainLayout MAIN_CLASS_COLOR {
+  c_disp_fpath
+  c_disp_log
+  controls : list
+  expand : bool
+  tf_extract_num
+}
+class "lib.components.layout.MergeElButton" as lib.components.layout.MergeElButton MAIN_CLASS_COLOR {
+  icon : MERGE
+  text : MERGE
+}
+class "lib.components.layout.PageTopAppBar" as lib.components.layout.PageTopAppBar MAIN_CLASS_COLOR {
+  bgcolor : BLUE_ACCENT
+  color : WHITE
+  leading : Icon
+  title : Text
+}
+class "lib.components.layout.ProcElButton" as lib.components.layout.ProcElButton MAIN_CLASS_COLOR {
+  col : dict
+  on_click : Callable
+}
+class "lib.components.layout.SelectElButton" as lib.components.layout.SelectElButton MAIN_CLASS_COLOR {
+  icon : SELECT
+  text : SELECT
+}
+class "lib.components.layout.SplitElButton" as lib.components.layout.SplitElButton MAIN_CLASS_COLOR {
+  icon : SPLIT
+  text : SPLIT
+}
+flet.core.adaptive_control.AdaptiveControl --|> flet.core.control.Control
+flet.core.app_bar.AppBar --|> flet.core.adaptive_control.AdaptiveControl
+flet.core.column.Column --|> flet.core.adaptive_control.AdaptiveControl
+flet.core.column.Column --|> flet.core.constrained_control.ConstrainedControl
+flet.core.column.Column --|> flet.core.scrollable_control.ScrollableControl
+flet.core.constrained_control.ConstrainedControl --|> flet.core.control.Control
+flet.core.container.Container --|> flet.core.adaptive_control.AdaptiveControl
+flet.core.container.Container --|> flet.core.constrained_control.ConstrainedControl
+flet.core.draggable.Draggable --|> flet.core.control.Control
+flet.core.elevated_button.ElevatedButton --|> flet.core.adaptive_control.AdaptiveControl
+flet.core.elevated_button.ElevatedButton --|> flet.core.constrained_control.ConstrainedControl
+flet.core.form_field_control.FormFieldControl --|> flet.core.constrained_control.ConstrainedControl
+flet.core.scrollable_control.ScrollableControl --|> flet.core.control.Control
+flet.core.textfield.TextField --|> flet.core.adaptive_control.AdaptiveControl
+flet.core.textfield.TextField --|> flet.core.form_field_control.FormFieldControl
+lib.components.layout.DelButtonText --|> flet.core.draggable.Draggable
+lib.components.layout.DeleteElButton --|> lib.components.layout.ProcElButton
+lib.components.layout.DispContainer --|> flet.core.container.Container
+lib.components.layout.ExtractElButton --|> lib.components.layout.ProcElButton
+lib.components.layout.ExtractPageTextField --|> flet.core.textfield.TextField
+lib.components.layout.MainLayout --|> flet.core.column.Column
+lib.components.layout.MergeElButton --|> lib.components.layout.ProcElButton
+lib.components.layout.PageTopAppBar --|> flet.core.app_bar.AppBar
+lib.components.layout.ProcElButton --|> flet.core.elevated_button.ElevatedButton
+lib.components.layout.SelectElButton --|> lib.components.layout.ProcElButton
+lib.components.layout.SplitElButton --|> lib.components.layout.ProcElButton
+lib.components.layout.DispContainer --* app.App : c_disp_fpath
+lib.components.layout.DispContainer --* app.App : c_disp_log
+lib.components.layout.DispContainer --* lib.components.layout.MainLayout : c_disp_fpath
+lib.components.layout.DispContainer --* lib.components.layout.MainLayout : c_disp_log
+lib.components.layout.ExtractPageTextField --* app.App : tf_extract_num
+lib.components.layout.ExtractPageTextField --* lib.components.layout.MainLayout : tf_extract_num
+flet.core.column.Column --o lib.components.layout.DelButtonText : parent_control
+flet.core.control.Control --o flet.core.draggable.Draggable : content
+flet.core.control.Control --o flet.core.draggable.Draggable : __content
+@enduml

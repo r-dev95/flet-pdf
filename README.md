@@ -1,12 +1,22 @@
-<!--
-    README
- -->
+<!-- ============================================================
+  Project Image
+ ============================================================ -->
+<div align=center>
+  <img
+    src='docs/image/demo.gif'
+    alt='Project Image.'
+    width=500
+  />
+</div>
 
-# Flet PDF App
+<!-- ============================================================
+  Overview
+ ============================================================ -->
+# :book:Overview
 
 <!-- [![English](https://img.shields.io/badge/English-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README.md) -->
 <!-- [![Japanese](https://img.shields.io/badge/Japanese-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README_JA.md) -->
-[![Japanese](https://img.shields.io/badge/Japanese-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README.md)
+[![English](https://img.shields.io/badge/English-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README.md)
 [![license](https://img.shields.io/github/license/r-dev95/flet-pdf-app)](./LICENSE)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -21,120 +31,137 @@ This repository is an app using [Flet][flet] to merge, split and extract pages f
 
 [flet]: https://flet.dev/
 
-## How to use
+<!-- ============================================================
+  Features
+ ============================================================ -->
+## :desktop_computer:Features
 
-This section describes how to use this app.
+<div align=center>
+  <img
+    src='docs/image/app.png'
+    alt='The App screen.'
+    width=500
+  />
+</div>
 
-This assumes that you have flet installed.
+|Item                            |Feature                              |
+| ---                            | ---                                 |
+|Select button                   |Select files.                        |
+|Delete button                   |Delete all files.                    |
+|Merge button                    |Merge files.                         |
+|Split button                    |Split all pages of the file.         |
+|Extract button                  |Enter the pages you want to extract. |
+|Text area (top right of screen) |Extract pages from the file.         |
+|Text area (File Path List)      |Display the selected file.           |
+|Text area (Log)                 |Display the logs.                    |
 
-* Launch the app.
+> [!note]
+> **Text area (top right of screen)**
+>
+> You can enter numbers separated by commas.
+>
+> You can also use hyphens to connect consecutive numbers.
+>
+> You can enter numbers connected with multiple hyphens, such as `10-5-15`, which is the same as `5-15`.
+>
+> Correct Example:
+>
+> ``` None
+> 1,5,10-15,20,40-35,50-55-45
+> ```
+>
+> Incorrect Example:
+>
+> ``` None
+> 1,
+> ```
+>
+> ``` None
+> ,1
+> ```
+>
+> ``` None
+> 10-
+> ```
+>
+> ``` None
+> -10
+> ```
 
-  In Desktop mode:
+<!-- ============================================================
+  Usage
+ ============================================================ -->
+## :keyboard:Usage
 
-  ``` bash
-  flet run app.py
-  ```
+### Install
 
-  In Web mode:
+```bash
+git clone https://github.com/r-dev95/flet-pdf-app.git
+```
 
-  ``` bash
-  flet run --web app.py
-  ```
+### Build virtual environment
 
-* Press the `Select` button and select files.
+You need to install `uv`.
 
-  When a file is selected, the `File Path List` displays the selected file and a corresponding `Delete` button.
+If you don't have a python development environment yet, see [here](https://github.com/r-dev95/env-python).
+
+```bash
+cd flet-pdf-app/
+uv sync
+```
+
+### Run
+
+```bash
+cd src
+uv run flet run app.py       # In Desktop mode
+uv run flet run app.py --web # In Web mode
+```
+
+- Press the `Select` button and select files.
+
+  When a file is selected, the `File Path List` displays the selected file and a corresponding :wastebasket: button.
 
   Files displayed in the `File Path List` can be reordered by drag and drop.
 
-  Pressing the `Delete` button will delete the corresponding file.
+  Pressing the :wastebasket: button will delete the corresponding file.
 
-* Press the `Merge` button and all files will be merged.
+- Press the `Merge` button and all files will be merged.
 
-* Pressing the `Split` button will split all pages from the file.
+- Pressing the `Split` button will split all pages from the file.
 
-* Pressing the `Extract` button will extract pages from the file.
+- Pressing the `Extract` button will extract pages from the file.
 
   Enter the form (`Number of pages to Extract`) to select the pages you want to extract.
 
-* Pressing the `Delete` button at the top of the screen will delete all files displayed in the `File Path List` (, not directory).
+- Pressing the `Delete` button at the top of the screen will delete all files displayed in the `File Path List` (, not directory).
 
-### Attention
+> [!note]
+> **In Web mode:**
+>
+> When selecting a file, the file path cannot be obtained, so the selected file must be in the same directory as `app.py`.
+>
+> **In Desktop mode:**
+>
+> When selecting a file, you can get the file path, so it doesn't matter where the file is located.
+>
+> However, this doesn't work well when launching the app in a virtual environment like WSL.
 
-In Web mode:
+<!-- ============================================================
+  Structure
+ ============================================================ -->
+## :bookmark_tabs:Structure
 
-* When selecting a file, the file path cannot be obtained, so the selected file must be in the same directory as `app.py`.
+<div align=center>
+  <img
+    src='docs/image/classes.png'
+    alt='classes.'
+  />
+</div>
 
-In Desktop mode:
-
-* When selecting a file, you can get the file path, so it doesn't matter where the file is located.
-
-  However, this doesn't work well when launching the app in a virtual environment like WSL.
-
-## About the app screen
-
-![alt text](docs/image/app.png)
-
-1. Button (`Select`, `Delete`, `Merge`, `Split`, `Extract`)
-
-    |Name   |Description                 |
-    | ---   | ---                        |
-    |Select |Select files.               |
-    |Delete |Delete all files.           |
-    |Merge  |Merge files.                |
-    |Split  |Split all pages of the file.|
-    |Extract|Extract pages from the file.|
-
-1. Enter form (`Number of pages to Extract`)
-
-   You can enter numbers separated by commas.
-
-   You can also use hyphens to connect consecutive numbers.
-
-   You can enter numbers connected with multiple hyphens, such as `10-5-15`, which is the same as `5-15`.
-
-    Correct Example:
-
-   ``` None
-   1,5,10-15,20,40-35,50-55-45
-   ```
-
-   Incorrect Example:
-
-   ``` None
-   1,
-   ```
-
-   ``` None
-   ,1
-   ```
-
-   ``` None
-   10-
-   ```
-
-   ``` None
-   -10
-   ```
-
-1. `File Path List`
-
-    The selected file and a corresponding `Delete` button are displayed.
-
-    The displayed files can be reordered by drag and drop.
-
-    Pressing the `Delete` button will delete the corresponding file.
-
-1. `Log`
-
-    The processing log will be displayed.
-
-## Building a development environment
-
-If you do not yet have a Python development environment, please see below.
-
-* [How to build development environment.](https://github.com/r-dev95/env-python) (Japanese only)
-
-## License
+<!-- ============================================================
+  License
+ ============================================================ -->
+## :key:License
 
 This repository is licensed under the [BSD 3-Clause](LICENSE).
