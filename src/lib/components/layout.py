@@ -225,7 +225,7 @@ class DispContainer(ft.Container):
 
         self.padding = 10
         self.expand = True
-        self.height = 300
+        self.height = 200
         self.bgcolor = ft.Colors.WHITE
         self.border = ft.border.all(1, ft.Colors.BLACK)
         self.border_radius = 5

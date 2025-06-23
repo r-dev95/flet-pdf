@@ -1,0 +1,25 @@
+@startuml packages
+set namespaceSeparator none
+package "app" as app {
+}
+package "lib.common.decorator" as lib.common.decorator {
+}
+package "lib.common.file" as lib.common.file {
+}
+package "lib.common.log" as lib.common.log {
+}
+package "lib.common.process" as lib.common.process {
+}
+package "lib.components.layout" as lib.components.layout {
+}
+package "lib.template" as lib.template {
+}
+app --> lib.common.file
+app --> lib.common.log
+app --> lib.components.layout
+lib.common.decorator --> lib.common.file
+lib.common.file --> lib.common.process
+lib.template --> lib.common.decorator
+lib.template --> lib.common.file
+lib.template --> lib.common.log
+@enduml
